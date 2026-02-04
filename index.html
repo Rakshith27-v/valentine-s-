@@ -206,7 +206,7 @@
     <img src="./cute (1).gif" class="bottom-left" />
     <img src="./munch-face.gif" class="bottom-right" />
 
-    <div class="center-text">Click Here!!</div>
+    <div class="center-text" onclick="startFlowers()">Click Here!!</div>
   </div>
 
   <script>
@@ -222,5 +222,52 @@
       }, 1000);
     });
   </script>
+  <script>
+    function startFlowers() {
+      for (let i = 0; i < 30; i++) {
+        const flower = document.createElement('img');
+        flower.src = './rosas.gif';
+        flower.style.position = 'fixed';
+        flower.style.left = Math.random() * window.innerWidth + 'px';
+        flower.style.top = '-100px';
+        flower.style.width = '80px';
+        flower.style.pointerEvents = 'none';
+        flower.style.animation = 'fall 2.5s linear forwards';
+        document.body.appendChild(flower);
+        setTimeout(() => flower.remove(), 2600);
+      }
+      setTimeout(() => {
+        document.body.innerHTML = `
+          <div style="width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:url('./4871703.jpg') center/cover;">
+            <img src="./e02ff151-a337-4ea8-9742-8fd801f01b0e.png" style="width:320px;margin-bottom:20px;animation:pop 1s ease;" />
+            <div style="font-size:28px;color:#ff2f92;font-weight:bold;animation:fadeUp 1.2s ease;">Flowers for my Pyara sa Flower 💖</div>
+            <img src="./meow-hs-meow-flowers.gif" style="width:160px;margin-top:20px;animation:fadeUp 1.6s ease;" />
+          </div>`;
+      }, 2600);
+    }
+
+    document.addEventListener('mousemove', function(e) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = e.clientX + 'px';
+      heart.style.top = e.clientY + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
+    });
+  </script>
+
+  <style>
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); opacity: 0.9; }
+    }
+    @keyframes pop {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </body>
 </html>
