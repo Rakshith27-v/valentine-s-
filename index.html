@@ -11,12 +11,12 @@ body{
   width:100vw;height:100vh;overflow:hidden;
   font-family:Arial, sans-serif;
   background:url('./4871703.jpg') no-repeat center/cover;
+  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text x='0' y='24' font-size='24'>💗</text></svg>") 0 0, auto;
 }
 
 .page{position:absolute;inset:0;display:none}
 .page.active{display:block}
 
-/* common */
 .center{position:absolute;left:50%;transform:translateX(-50%)}
 .next{position:absolute;bottom:25px;right:25px;background:#ff5fa2;color:#fff;
 padding:10px 20px;border-radius:20px;cursor:pointer}
@@ -97,6 +97,17 @@ font-size:42px;font-weight:bold;color:#ff2f92
 from{opacity:0;transform:translate(-50%,40px)}
 to{opacity:1;transform:translate(-50%,0)}
 }
+
+/* HEART TRAIL */
+.heart{
+  position:fixed;
+  font-size:16px;
+  pointer-events:none;
+  animation:float 1s ease-out forwards;
+}
+@keyframes float{
+  to{transform:translateY(-40px);opacity:0}
+}
 </style>
 </head>
 
@@ -122,7 +133,7 @@ to{opacity:1;transform:translate(-50%,0)}
 <!-- PAGE 3 -->
 <div id="page3" class="page">
 <div class="video-wrap center">
-<video src="./Tinga ninga.mp4" autoplay controls></video>
+<video src="./Tinga ninga.mp4" autoplay muted controls></video>
 </div>
 <div class="video-text center">
 This will be us together, dono tingu😭😂<br><br>
@@ -197,6 +208,17 @@ if(n===8)setTimeout(()=>show(9),3500);
 }
 function no(){show(6);setTimeout(()=>show(5),3000)}
 function yes(){show(7);setTimeout(()=>show(8),3000)}
+
+// HEART TRAIL
+document.addEventListener('mousemove',e=>{
+const h=document.createElement('div');
+h.className='heart';
+h.innerText='💗';
+h.style.left=e.clientX+'px';
+h.style.top=e.clientY+'px';
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),1000);
+});
 </script>
 
 </body>
