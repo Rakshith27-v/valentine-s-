@@ -26,6 +26,22 @@
       position: relative;
     }
 
+    /* ensure page-specific visibility */
+    #page1 .cat {
+      position: absolute;
+      top: 600px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      display: none; /* hidden everywhere by default */
+    }
+
+    /* show cat ONLY on page 2 */
+    #page2 .cat {
+      display: block;
+    }
+    #page3 .cat { display: none; }
+
     /* corner gifs */
     .corner {
       position: absolute;
@@ -199,6 +215,7 @@
   <div id="page2">
     <img src="./rosas.gif" class="bouquet" />
     <div class="text">Flowers for my Pyara sa Flower 💖</div>
+    <!-- cat only on page 2 -->
     <img src="./meow-hs-meow-flowers.gif" class="cat" />
 
     <!-- next button -->
