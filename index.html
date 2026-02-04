@@ -123,6 +123,51 @@
       transform: translateX(-50%);
       width: 160px;
     }
+  
+    /* next button */
+    .next-btn {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
+      background: #ff5fa2;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(255,95,162,.4);
+    }
+
+    /* PAGE 3 */
+    #page3 {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      text-align: center;
+    }
+
+    .video-wrap {
+      position: absolute;
+      top: 120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 320px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .final-text {
+      position: absolute;
+      top: 480px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      font-size: 22px;
+      color: #ff2f92;
+      font-weight: bold;
+      line-height: 1.4;
+    }
   </style>
 </head>
 <body>
@@ -140,7 +185,12 @@
   <!-- PAGE 2 -->
   <div id="page2">
     <img src="./rosas.gif" class="bouquet" />
-    <div class="text">Flowers for my Pyara sa Flower 😘</div>
+    <div class="text">Flowers for my Pyara sa Flower 💖</div>
+    <img src="./meow-hs-meow-flowers.gif" class="cat" />
+
+    <!-- next button -->
+    <div class="next-btn" onclick="goThird()">Next ➜</div>
+  </div>
     <img src="./meow-hs-meow-flowers.gif" class="cat" />
   </div>
 
@@ -148,6 +198,38 @@
     function goNext() {
       document.getElementById('page1').style.display = 'none';
       document.getElementById('page2').style.display = 'block';
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = e.clientX + 'px';
+      heart.style.top = e.clientY + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
+    });
+  </script>
+
+  <!-- PAGE 3 -->
+  <div id="page3">
+    <div class="video-wrap">
+      <video src="./Tinga ninga.mp4" controls autoplay></video>
+    </div>
+    <div class="final-text">
+      This will be us together, dono tingu😭😂<br><br>
+      But dw as long as we are together with love and always at eachother's support, we will be happy in our peaceful world ❤️🫂
+    </div>
+  </div>
+
+  <script>
+    function goNext() {
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page2').style.display = 'block';
+    }
+
+    function goThird() {
+      document.getElementById('page2').style.display = 'none';
+      document.getElementById('page3').style.display = 'block';
     }
 
     document.addEventListener('mousemove', (e) => {
