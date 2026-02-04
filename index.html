@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      background: url("./4871703.jpg") no-repeat center center / cover;
+    }
+
+    /* ---------- PAGE 1 ---------- */
+    .page1 {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #ff5fa2, #ff85c1);
+      padding: 16px 42px;
+      border-radius: 40px;
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(255, 95, 162, 0.4);
+    }
+
+    .center-text:hover {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    /* ---------- PAGE 2 ---------- */
+    .page2 {
+      display: none;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+
+    .bouquet {
+      width: 320px;
+      margin-top: 80px;
+    }
+
+    .text {
+      margin-top: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #ff2f92;
+    }
+
+    .cat {
+      width: 150px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1 -->
+  <div class="page1" id="page1">
+    <div class="center-text" onclick="goNext()">Click Here!!</div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="page2" id="page2">
+    <img src="./rosas.gif" class="bouquet" />
+    <div class="text">Flowers for my Pyara sa Flower 💖</div>
+    <img src="./meow-hs-meow-flowers.gif" class="cat" />
+  </div>
+
+  <script>
+    function goNext() {
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page2').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
