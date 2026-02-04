@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Click Here</title>
+  <title>For You</title>
   <style>
     * {
       margin: 0;
@@ -12,23 +12,18 @@
     }
 
     body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-
-    /* IMPORTANT: background via container, not body (works better in Framer / hosting) */
-    .container {
-      position: relative;
       width: 100vw;
       height: 100vh;
-      background-image: url("./4871703.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      background: url("./4871703.jpg") no-repeat center center / cover;
+    }
+
+    /* ---------- PAGE 1 ---------- */
+    .page1 {
+      width: 100%;
+      height: 100%;
+      position: relative;
     }
 
     .center-text {
@@ -36,238 +31,66 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 32px;
+      background: linear-gradient(135deg, #ff5fa2, #ff85c1);
+      padding: 16px 42px;
+      border-radius: 40px;
+      color: white;
+      font-size: 30px;
       font-weight: bold;
-      color: #d100ff;
       cursor: pointer;
-      z-index: 10;
-    }
-
-    img {
-      position: absolute;
-      z-index: 5;
-    }
-
-    .top-left {
-      top: 20px;
-      left: 20px;
-      width: 140px;
-    }
-
-    .top-right {
-      top: 20px;
-      right: 20px;
-      width: 140px;
-    }
-
-    .bottom-left {
-      bottom: 20px;
-      left: 20px;
-      width: 160px;
-    }
-
-    .bottom-right {
-      bottom: 20px;
-      right: 20px;
-      width: 160px;
-    }
-  
-    /* Animated button */
-    .center-text {
-      background: linear-gradient(135deg, #ff5fa2, #ff85c1);
-      padding: 16px 42px;
-      border-radius: 40px;
-      color: white;
-      font-size: 30px;
-      font-weight: bold;
       box-shadow: 0 10px 25px rgba(255, 95, 162, 0.4);
-      animation: pulse 1.8s infinite;
-      user-select: none;
     }
 
     .center-text:hover {
       transform: translate(-50%, -50%) scale(1.08);
-      box-shadow: 0 15px 35px rgba(255, 95, 162, 0.6);
     }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255, 95, 162, 0.6); }
-      70% { box-shadow: 0 0 0 25px rgba(255, 95, 162, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 95, 162, 0); }
+    /* ---------- PAGE 2 ---------- */
+    .page2 {
+      display: none;
+      width: 100%;
+      height: 100%;
+      text-align: center;
     }
 
-    /* Heart cursor trail */
-    .heart {
-      position: fixed;
-      width: 14px;
-      height: 14px;
-      background: pink;
-      transform: rotate(45deg);
-      pointer-events: none;
-      animation: floatUp 1s ease-out forwards;
+    .bouquet {
+      width: 320px;
+      margin-top: 80px;
     }
 
-    .heart::before,
-    .heart::after {
-      content: '';
-      width: 14px;
-      height: 14px;
-      background: pink;
-      border-radius: 50%;
-      position: absolute;
-    }
-
-    .heart::before {
-      top: -7px;
-      left: 0;
-    }
-
-    .heart::after {
-      left: -7px;
-      top: 0;
-    }
-
-    @keyframes floatUp {
-      0% { opacity: 1; transform: translateY(0) rotate(45deg) scale(1); }
-      100% { opacity: 0; transform: translateY(-60px) rotate(45deg) scale(0.6); }
-    }
-  
-    /* Cute pink cursor */
-    body {
-      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text x='0' y='24' font-size='24'>💗</text></svg>") 8 8, auto;
-    }
-
-    /* Animated button */
-    .center-text {
-      background: linear-gradient(135deg, #ff5fa2, #ff85c1);
-      padding: 16px 42px;
-      border-radius: 40px;
-      color: white;
-      font-size: 30px;
+    .text {
+      margin-top: 20px;
+      font-size: 28px;
       font-weight: bold;
-      box-shadow: 0 10px 25px rgba(255, 95, 162, 0.4);
-      animation: pulse 1.8s infinite;
-      user-select: none;
+      color: #ff2f92;
     }
 
-    .center-text:hover {
-      transform: translate(-50%, -50%) scale(1.08);
-      box-shadow: 0 15px 35px rgba(255, 95, 162, 0.6);
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255, 95, 162, 0.6); }
-      70% { box-shadow: 0 0 0 25px rgba(255, 95, 162, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 95, 162, 0); }
-    }
-
-    /* Heart cursor trail */
-    .heart {
-      position: fixed;
-      width: 14px;
-      height: 14px;
-      background: pink;
-      transform: rotate(45deg);
-      pointer-events: none;
-      animation: floatUp 1s ease-out forwards;
-    }
-
-    .heart::before,
-    .heart::after {
-      content: '';
-      width: 14px;
-      height: 14px;
-      background: pink;
-      border-radius: 50%;
-      position: absolute;
-    }
-
-    .heart::before {
-      top: -7px;
-      left: 0;
-    }
-
-    .heart::after {
-      left: -7px;
-      top: 0;
-    }
-
-    @keyframes floatUp {
-      0% { opacity: 1; transform: translateY(0) rotate(45deg) scale(1); }
-      100% { opacity: 0; transform: translateY(-60px) rotate(45deg) scale(0.6); }
+    .cat {
+      width: 150px;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Make sure ALL these files are in the SAME folder as this HTML -->
-    <img src="./tkthao219-bubududu.gif" class="top-left" />
-    <img src="./twitter-cute.gif" class="top-right" />
-    <img src="./cute (1).gif" class="bottom-left" />
-    <img src="./munch-face.gif" class="bottom-right" />
 
-    <div class="center-text" onclick="startFlowers()">Click Here!!</div>
+  <!-- PAGE 1 -->
+  <div class="page1" id="page1">
+    <div class="center-text" onclick="goNext()">Click Here!!</div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="page2" id="page2">
+    <img src="./rosas.gif" class="bouquet" />
+    <div class="text">Flowers for my Pyara sa Flower 💖</div>
+    <img src="./meow-hs-meow-flowers.gif" class="cat" />
   </div>
 
   <script>
-    document.addEventListener('mousemove', function(e) {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = e.clientX + 'px';
-      heart.style.top = e.clientY + 'px';
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 1000);
-    });
-  </script>
-  <script>
-    function startFlowers() {
-      for (let i = 0; i < 30; i++) {
-        const flower = document.createElement('img');
-        flower.src = './rosas.gif';
-        flower.style.position = 'fixed';
-        flower.style.left = Math.random() * window.innerWidth + 'px';
-        flower.style.top = '-100px';
-        flower.style.width = '80px';
-        flower.style.pointerEvents = 'none';
-        flower.style.animation = 'fall 2.5s linear forwards';
-        document.body.appendChild(flower);
-        setTimeout(() => flower.remove(), 2600);
-      }
-      setTimeout(() => {
-        document.body.innerHTML = `
-          <div style="width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:url('./4871703.jpg') center/cover;">
-            <img src="./e02ff151-a337-4ea8-9742-8fd801f01b0e.png" style="width:320px;margin-bottom:20px;animation:pop 1s ease;" />
-            <div style="font-size:28px;color:#ff2f92;font-weight:bold;animation:fadeUp 1.2s ease;">Flowers for my Pyara sa Flower 💖</div>
-            <img src="./meow-hs-meow-flowers.gif" style="width:160px;margin-top:20px;animation:fadeUp 1.6s ease;" />
-          </div>`;
-      }, 2600);
+    function goNext() {
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page2').style.display = 'block';
     }
-
-    document.addEventListener('mousemove', function(e) {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = e.clientX + 'px';
-      heart.style.top = e.clientY + 'px';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 1000);
-    });
   </script>
 
-  <style>
-    @keyframes fall {
-      to { transform: translateY(110vh) rotate(360deg); opacity: 0.9; }
-    }
-    @keyframes pop {
-      0% { transform: scale(0); }
-      100% { transform: scale(1); }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
 </body>
 </html>
