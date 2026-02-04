@@ -2,241 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Valentine</title>
-
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-
-    body{
-      width:100vw;
-      height:100vh;
-      overflow:hidden;
+    body {
+      width:100vw; height:100vh; overflow:hidden;
       font-family: Arial, sans-serif;
-      background:url('./4871703.jpg') no-repeat center/cover;
+      background: url('./4871703.jpg') no-repeat center/cover;
     }
 
-    .page{
-      position:absolute;
-      inset:0;
-      display:none;
-      opacity:0;
-      animation:fadeIn 1s ease forwards;
-    }
-
-    .page.active{ display:block; }
-
-    @keyframes fadeIn{
-      from{ opacity:0 }
-      to{ opacity:1 }
-    }
+    .page { position:absolute; inset:0; display:none; }
+    .page.active { display:block; }
 
     /* PAGE 1 */
-    .corner{ position:absolute; width:140px; }
-    .top-left{ top:20px; left:20px }
-    .top-right{ top:20px; right:20px }
-    .bottom-left{ bottom:20px; left:20px }
-    .bottom-right{ bottom:20px; right:20px }
+    .corner { position:absolute; width:140px; }
+    .top-left{top:20px;left:20px;} .top-right{top:20px;right:20px;}
+    .bottom-left{bottom:20px;left:20px;} .bottom-right{bottom:20px;right:20px;}
 
     .center-btn{
-      position:absolute;
-      top:50%;
-      left:50%;
-      transform:translate(-50%,-50%);
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
       background:linear-gradient(135deg,#ff5fa2,#ff85c1);
-      padding:18px 46px;
-      border-radius:40px;
-      color:#fff;
-      font-size:30px;
-      font-weight:bold;
-      cursor:pointer;
+      padding:18px 46px; border-radius:40px;
+      color:#fff; font-size:30px; font-weight:bold; cursor:pointer;
       box-shadow:0 10px 25px rgba(255,95,162,.45);
       animation:pulse 1.8s infinite;
     }
 
     @keyframes pulse{
-      0%{ box-shadow:0 0 0 0 rgba(255,95,162,.6) }
-      70%{ box-shadow:0 0 0 30px rgba(255,95,162,0) }
-      100%{ box-shadow:0 0 0 0 rgba(255,95,162,0) }
+      0%{box-shadow:0 0 0 0 rgba(255,95,162,.6)}
+      70%{box-shadow:0 0 0 30px rgba(255,95,162,0)}
+      100%{box-shadow:0 0 0 0 rgba(255,95,162,0)}
     }
 
     /* PAGE 2 */
-    .bouquet{ position:absolute; top:80px; left:50%; transform:translateX(-50%); width:360px }
-    .p2text{ position:absolute; top:500px; left:50%; transform:translateX(-50%); font-size:30px; font-weight:bold; color:#ff2f92 }
-    .cat{ position:absolute; top:600px; left:50%; transform:translateX(-50%); width:160px }
-    .next-btn{ position:absolute; bottom:25px; right:25px; background:#ff5fa2; color:#fff; padding:10px 20px; border-radius:20px; cursor:pointer }
+    .bouquet{position:absolute;top:80px;left:50%;transform:translateX(-50%);width:360px;}
+    .p2text{position:absolute;top:500px;left:50%;transform:translateX(-50%);font-size:30px;font-weight:bold;color:#ff2f92;}
+    .cat{position:absolute;top:600px;left:50%;transform:translateX(-50%);width:160px;}
+    .next-btn{position:absolute;bottom:25px;right:25px;background:#ff5fa2;color:#fff;padding:10px 20px;border-radius:20px;cursor:pointer;}
 
     /* PAGE 3 VIDEO */
     .video-wrap{
-      position:absolute;
-      top:120px;
-      left:50%;
-      transform:translateX(-50%);
-      width:520px;
-      max-width:90vw;
-      background:#ffb6d9;
-      padding:12px;
-      border-radius:24px;
+      position:absolute; top:120px; left:50%; transform:translateX(-50%);
+      width:520px; max-width:90vw; background:#ffb6d9;
+      padding:12px; border-radius:24px;
     }
+    .video-wrap video{ width:100%; aspect-ratio:16/9; border-radius:16px; background:black; }
+    .video-text{ position:absolute; top:500px; left:50%; transform:translateX(-50%);
+      width:85%; text-align:center; font-size:22px; font-weight:bold; color:#ff2f92; }
+    .next-video{position:absolute;bottom:25px;right:25px;background:#ff5fa2;color:#fff;padding:10px 20px;border-radius:20px;cursor:pointer;}
 
-    .video-wrap video{
-      width:100%;
-      aspect-ratio:16/9;
-      border-radius:16px;
-      background:black;
-    }
+    /* PAGE 4 READY */
+    .ready{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      font-size:32px; font-weight:bold; color:#ff2f92; }
 
-    .video-text{
-      position:absolute;
-      top:500px;
-      left:50%;
-      transform:translateX(-50%);
-      width:85%;
-      text-align:center;
-      font-size:22px;
-      font-weight:bold;
-      color:#ff2f92;
-    }
+    /* PAGE 5 VALENTINE */
+    .valentine{ position:absolute; top:40%; left:50%; transform:translate(-50%,-50%) scale(0);
+      font-size:44px; font-weight:bold; color:#ff2f92; text-align:center; animation:pop 1s forwards; }
+    .choices{ position:absolute; top:60%; left:50%; transform:translateX(-50%); display:flex; gap:30px; }
+    .yes{ background:linear-gradient(135deg,#ff5fa2,#ff85c1); color:#fff; padding:16px 40px; border:none;
+      border-radius:30px; font-size:22px; font-weight:bold; cursor:pointer; animation:pulse 1.6s infinite; }
+    .no{ background:#ffd6e5; color:#666; padding:16px 36px; border:none; border-radius:30px; font-size:20px; cursor:pointer; }
 
-    .next-video{ position:absolute; bottom:25px; right:25px; background:#ff5fa2; color:#fff; padding:10px 20px; border-radius:20px; cursor:pointer }
+    /* PAGE 6 NO GIF */
+    .response-gif{ position:absolute; top:160px; left:50%; transform:translateX(-50%); width:260px; }
+    .response-text{ position:absolute; top:440px; left:50%; transform:translateX(-50%);
+      width:85%; text-align:center; font-size:24px; font-weight:bold; color:#ff2f92; }
 
-    /* READY PAGE */
-    .ready{
-      position:absolute;
-      top:50%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      font-size:32px;
-      font-weight:bold;
-      color:#ff2f92;
-    }
+    /* PAGE 7 YES GIF */
+    .final-big{ position:absolute; top:45%; left:50%; transform:translate(-50%,-50%) scale(0);
+      font-size:46px; font-weight:bold; color:#ff2f92; text-align:center; animation:pop 1s forwards; }
 
-    /* VALENTINE */
-    .valentine{
-      position:absolute;
-      top:40%;
-      left:50%;
-      transform:translate(-50%,-50%) scale(0);
-      font-size:44px;
-      font-weight:bold;
-      color:#ff2f92;
-      text-align:center;
-      animation:pop 1s forwards;
-    }
-
-    @keyframes pop{
-      to{ transform:translate(-50%,-50%) scale(1) }
-    }
-
-    .choices{
-      position:absolute;
-      top:60%;
-      left:50%;
-      transform:translateX(-50%);
-      display:flex;
-      gap:30px;
-    }
-
-    .yes{
-      background:linear-gradient(135deg,#ff5fa2,#ff85c1);
-      color:#fff;
-      padding:16px 40px;
-      border:none;
-      border-radius:30px;
-      font-size:22px;
-      font-weight:bold;
-      cursor:pointer;
-      animation:pulse 1.6s infinite;
-    }
-
-    .no{
-      background:#ffd6e5;
-      color:#666;
-      padding:16px 36px;
-      border:none;
-      border-radius:30px;
-      font-size:20px;
-      cursor:pointer;
-    }
-
-    /* NO PAGE */
-    .response-gif{
-      position:absolute;
-      top:160px;
-      left:50%;
-      transform:translateX(-50%);
-      width:260px;
-    }
-
-    .response-text{
-      position:absolute;
-      top:440px;
-      left:50%;
-      transform:translateX(-50%);
-      width:85%;
-      text-align:center;
-      font-size:24px;
-      font-weight:bold;
-      color:#ff2f92;
-    }
-
-    /* FINAL PARAGRAPH */
-    .final-gif{
-      width:180px;
-      display:block;
-      margin:40px auto;
-    }
-
-    .final-paragraph{
-      width:85%;
-      margin:20px auto;
-      text-align:center;
-      font-size:20px;
-      line-height:1.6;
-      color:#ffia92;
-      animation:fadeIn 1.5s ease forwards;
-    }
+    @keyframes pop{ to{ transform:translate(-50%,-50%) scale(1); } }
   </style>
 </head>
-
 <body>
 
 <!-- PAGE 1 -->
 <div id="page1" class="page active">
-  <img src="./tkthao219-bubududu.gif" class="corner top-left">
-  <img src="./twitter-cute.gif" class="corner top-right">
-  <img src="./cute (1).gif" class="corner bottom-left">
-  <img src="./munch-face.gif" class="corner bottom-right">
+  <img src="./tkthao219-bubududu.gif" class="corner top-left" />
+  <img src="./twitter-cute.gif" class="corner top-right" />
+  <img src="./cute (1).gif" class="corner bottom-left" />
+  <img src="./munch-face.gif" class="corner bottom-right" />
   <div class="center-btn" onclick="go(2)">Click Here!!</div>
 </div>
 
 <!-- PAGE 2 -->
 <div id="page2" class="page">
-  <img src="./rosas.gif" class="bouquet">
+  <img src="./rosas.gif" class="bouquet" />
   <div class="p2text">Flowers for my Pyara sa Flower 💖</div>
-  <img src="./meow-hs-meow-flowers.gif" class="cat">
+  <img src="./meow-hs-meow-flowers.gif" class="cat" />
   <div class="next-btn" onclick="go(3)">Next ➜</div>
 </div>
 
-<!-- PAGE 3 -->
+<!-- PAGE 3 VIDEO -->
 <div id="page3" class="page">
-  <div class="video-wrap">
-    <video src="./Tinga ninga.mp4" controls autoplay></video>
-  </div>
-  <div class="video-text">
-    This will be us together, dono tingu😭😂<br><br>
-    But dw as long as we are together with love and always at eachother's support,
-    we will be happy in our peaceful world ❤️🫂
-  </div>
+  <div class="video-wrap"><video src="./Tinga ninga.mp4" controls autoplay></video></div>
+  <div class="video-text">This will be us together, dono tingu😭😂<br><br>But dw as long as we are together with love and always at eachother's support, we will be happy in our peaceful world ❤️🫂</div>
   <div class="next-video" onclick="go(4)">Next ➜</div>
 </div>
 
-<!-- PAGE 4 -->
-<div id="page4" class="page">
-  <div class="ready">Ready for the surprise ?</div>
-</div>
+<!-- PAGE 4 READY -->
+<div id="page4" class="page"><div class="ready">Ready for the surprise ?</div></div>
 
-<!-- PAGE 5 -->
+<!-- PAGE 5 VALENTINE -->
 <div id="page5" class="page">
   <div class="valentine">Vanshika Bareja,<br>Will you be my Valentine ? 💖</div>
   <div class="choices">
@@ -245,85 +114,74 @@
   </div>
 </div>
 
-<!-- PAGE 6 -->
+<!-- PAGE 6 NO -->
 <div id="page6" class="page">
-  <img src="./cute-dog.gif" class="response-gif">
-  <div class="response-text">
-    Tusi aisa na kro 🥺,<br>
-    Bhot pyar krte hai hum aapse,<br>
-    Please Yes krdijiye ☹️
-  </div>
+  <img src="./cute-dog.gif" class="response-gif" />
+  <div class="response-text">Tusi aisa na kro 🥺,<br>Bhot pyar krte hai hum aapse,<br>Please Yes krdijiye ☹️</div>
 </div>
 
-<!-- PAGE 7 -->
+<!-- PAGE 7 YES -->
 <div id="page7" class="page">
-  <img src="./dare-aggie-dare-aggie-bunny.gif" class="response-gif">
-  <div class="response-text">
-    Yayyyyyyy, I love you soo muchh 😘😘<br>
-    Thank you madam ji for giving me this opportunity 🙇🏻
-  </div>
+  <img src="./dare-aggie-dare-aggie-bunny.gif" class="response-gif" />
+  <div class="response-text">Yayyyyyyy, I love you soo muchh 😘😘<br>Thank you madam ji for giving me this opportunity 🙇🏻</div>
 </div>
 
-<!-- PAGE 8 -->
-<div id="page8" class="page">
-  <div class="ready">Get ready for 7 days of loveeee 😘❤️</div>
-</div>
+<!-- PAGE 8 FINAL -->
+<div id="page8" class="page"><div class="final-big">Get ready for 7 days of loveeee 😘❤️</div></div>
 
-<!-- PAGE 9 FINAL -->
+<!-- PAGE 9 PARAGRAPH -->
 <div id="page9" class="page">
-  <img src="./hug-couple.gif" class="final-gif">
+  <img src="./hug-couple.gif" class="final-gif" />
 
-  <div class="final-paragraph">
-    Valentine’s Day is just an excuse for me cutu, because my love for you doesn’t belong to one day in a year.
-    It lives in every ordinary day, every little moment, every time I think of you.
-    Aapko pasand ni hoga yeh sab maybe it’s because you haven’t experienced things like this,
-    ya aapko cringe lgtha ho pr I just wait so much for days like these to make you happy by making you things,
-    that gives me so much joy.
-    I’m so lucky to have you as my girlfriend, always by my side, choosing me again and again.
-    This love will come to you not just today, but on every single day of my life quietly, deeply, and endlessly,
-    just for you.
-    Thank you for being in my life cutu. I love you so much.<br><br>
-    <strong>– Raksh</strong>
+  <div class="video-text fade" style="top:40%; font-size:20px; line-height:1.6;">
+    Valentine’s Day is just an excuse for me cutu, because my love for you doesn’t belong to one day in a year. It lives in every ordinary day, every little moment, every time I think of you. Aapko pasand ni hoga yeh sab maybe it’s because you haven’t experienced things like this, ya aapko cringe lgtha ho pr I just wait so much for days like these to make you happy by making you things, that gives me so much joy. I’m so lucky to have you as my girlfriend, always by my side, choosing me again and again. This love will come to you not just today, but on every single day of my life quietly, deeply, and endlessly, just for you. Thank you for being in my life cutu. I love you so much.<br><br><strong>– Raksh</strong>
   </div>
 
-  <img src="./milkandmocha-hug.gif" class="final-gif">
+  <img src="./milkandmocha-hug.gif" class="final-gif" />
+</div>
 </div>
 
 <script>
   function show(n){
-    document.querySelectorAll('.page').forEach(p=>{
-      p.classList.remove('active');
-    });
-    document.getElementById('page'+n).classList.add('active');
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page' + n);
+    if (!target) {
+      console.error('Page not found: page' + n);
+      return;
+    }
+    target.classList.add('active');
   }
 
   function go(n){
     show(n);
 
-    // Ready for surprise → Valentine
+    // Ready for surprise → Valentine question
     if(n === 4){
       setTimeout(() => show(5), 3500);
     }
 
     // Get ready for 7 days → Final paragraph
     if(n === 8){
-      setTimeout(() => show(9), 3500);
+      const pages = document.querySelectorAll('.page');
+      const lastPage = pages.length;
+      setTimeout(() => show(lastPage), 3500);
     }
   }
 
   function noClicked(){
     show(6); // sad gif
-    setTimeout(() => show(5), 3500); // back to valentine
+    setTimeout(() => show(5), 3500); // back to valentine page
   }
 
   function yesClicked(){
     show(7); // happy gif
     setTimeout(() => {
-      go(8); // IMPORTANT: must use go(), not show()
+      go(8); // IMPORTANT: use go() so auto-forward works
     }, 3500);
   }
 </script>
 
-
 </body>
 </html>
+
