@@ -5,273 +5,154 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>For You</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
-      width: 100vw;
-      height: 100vh;
+      width:100vw; height:100vh; overflow:hidden;
       font-family: Arial, sans-serif;
-      overflow: hidden;
-      background: url("./4871703.jpg") no-repeat center center / cover;
+      background: url('./4871703.jpg') no-repeat center/cover;
     }
 
-    /* ---------------- PAGE 1 ---------------- */
-    #page1 {
-      width: 100%;
-      height: 100%;
-      position: relative;
+    /* ===== PAGE BASE ===== */
+    .page {
+      position:absolute;
+      inset:0;
+      display:none;
     }
 
-    /* ensure page-specific visibility */
-    #page1 .cat {
-      position: absolute;
-      top: 600px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 160px;
-      display: none; /* hidden everywhere by default */
+    .page.active { display:block; }
+
+    /* ===== PAGE 1 ===== */
+    .corner { position:absolute; width:140px; }
+    .top-left{top:20px;left:20px;} .top-right{top:20px;right:20px;}
+    .bottom-left{bottom:20px;left:20px;} .bottom-right{bottom:20px;right:20px;}
+
+    .center-btn{
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      background:linear-gradient(135deg,#ff5fa2,#ff85c1);
+      padding:18px 46px; border-radius:40px;
+      color:#fff; font-size:30px; font-weight:bold; cursor:pointer;
+      box-shadow:0 10px 25px rgba(255,95,162,.45);
+      animation:pulse 1.8s infinite;
     }
 
-    /* show cat ONLY on page 2 */
-    #page2 .cat {
-      display: block;
-    }
-    #page3 .cat { display: none; }
-
-    /* corner gifs */
-    .corner {
-      position: absolute;
-      width: 140px;
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(255,95,162,.6)}
+      70%{box-shadow:0 0 0 30px rgba(255,95,162,0)}
+      100%{box-shadow:0 0 0 0 rgba(255,95,162,0)}
     }
 
-    .top-left { top: 20px; left: 20px; }
-    .top-right { top: 20px; right: 20px; }
-    .bottom-left { bottom: 20px; left: 20px; }
-    .bottom-right { bottom: 20px; right: 20px; }
+    /* ===== PAGE 2 ===== */
+    .bouquet{position:absolute;top:80px;left:50%;transform:translateX(-50%);width:360px;}
+    .p2text{position:absolute;top:500px;left:50%;transform:translateX(-50%);font-size:30px;font-weight:bold;color:#ff2f92;}
+    .cat{position:absolute;top:600px;left:50%;transform:translateX(-50%);width:160px;}
+    .next-btn{position:absolute;bottom:25px;right:25px;background:#ff5fa2;color:#fff;padding:10px 20px;border-radius:20px;cursor:pointer;}
 
-    /* button */
-    .center-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(135deg, #ff5fa2, #ff85c1);
-      padding: 16px 44px;
-      border-radius: 40px;
-      color: white;
-      font-size: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 10px 25px rgba(255, 95, 162, 0.45);
-      animation: pulse 1.8s infinite;
+    /* ===== PAGE 3 (VIDEO) ===== */
+    .video-wrap{
+      position:absolute; top:120px; left:50%; transform:translateX(-50%);
+      width:520px; max-width:90vw;
+      background:#ffb6d9; padding:12px; border-radius:24px;
+    }
+    .video-wrap video{
+      width:100%; aspect-ratio:16/9; border-radius:16px; background:black;
     }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255,95,162,.6); }
-      70% { box-shadow: 0 0 0 28px rgba(255,95,162,0); }
-      100% { box-shadow: 0 0 0 0 rgba(255,95,162,0); }
+    .next-video{position:absolute;bottom:25px;right:25px;background:#ff5fa2;color:#fff;padding:10px 20px;border-radius:20px;cursor:pointer;}
+
+    /* ===== PAGE 4 (SURPRISE) ===== */
+    .title{
+      position:absolute; top:40%; left:50%; transform:translate(-50%,-50%);
+      font-size:32px; font-weight:bold; color:#ff2f92;
+      animation:fadeIn .6s ease;
     }
 
-    /* heart cursor trail */
-    .heart {
-      position: fixed;
-      width: 14px;
-      height: 14px;
-      background: pink;
-      transform: rotate(45deg);
-      pointer-events: none;
-      animation: floatUp 1s ease-out forwards;
+    /* ===== PAGE 5 (VALENTINE) ===== */
+    .valentine{
+      position:absolute; top:40%; left:50%; transform:translate(-50%,-50%) scale(0);
+      font-size:44px; font-weight:bold; color:#ff2f92; text-align:center;
+      animation:pop 1s ease forwards;
     }
 
-    .heart::before,
-    .heart::after {
-      content: '';
-      width: 14px;
-      height: 14px;
-      background: pink;
-      border-radius: 50%;
-      position: absolute;
-    }
+    .choices{position:absolute;top:60%;left:50%;transform:translateX(-50%);display:flex;gap:30px;}
+    .yes{background:linear-gradient(135deg,#ff5fa2,#ff85c1);color:#fff;padding:16px 40px;border:none;border-radius:30px;font-size:22px;font-weight:bold;cursor:pointer;box-shadow:0 10px 25px rgba(255,95,162,.6);animation:pulse 1.6s infinite;}
+    .no{background:#ffd6e5;color:#666;padding:16px 36px;border:none;border-radius:30px;font-size:20px;cursor:pointer;}
 
-    .heart::before { top: -7px; left: 0; }
-    .heart::after { left: -7px; top: 0; }
+    @keyframes pop{to{transform:translate(-50%,-50%) scale(1);}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-    @keyframes floatUp {
-      0% { opacity: 1; transform: translateY(0) rotate(45deg) scale(1); }
-      100% { opacity: 0; transform: translateY(-60px) rotate(45deg) scale(0.6); }
-    }
-
-    /* ---------------- PAGE 2 (UNCHANGED) ---------------- */
-    #page2 {
-      display: none;
-      width: 100%;
-      height: 100%;
-      position: relative;
-      text-align: center;
-    }
-
-    .bouquet {
-      position: absolute;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 360px;
-    }
-
-    .text {
-      position: absolute;
-      top: 500px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 30px;
-      font-weight: bold;
-      color: #ff2f92;
-    }
-
-    .cat {
-      position: absolute;
-      top: 600px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 160px;
-    }
-  
-    /* next button */
-    .next-btn {
-      position: absolute;
-      bottom: 25px;
-      right: 25px;
-      background: #ff5fa2;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0 6px 15px rgba(255,95,162,.4);
-    }
-
-    /* PAGE 3 */
-    #page3 {
-      display: none;
-      width: 100%;
-      height: 100%;
-      position: relative;
-      text-align: center;
-    }
-
-    .video-wrap {
-      position: absolute;
-      top: 120px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 520px;
-      max-width: 90vw;
-      background: #ffb6d9;
-      padding: 12px;
-      border-radius: 24px;
-      box-shadow: 0 10px 25px rgba(255,95,162,0.35);
-    }
-
-    .video-wrap video {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 16 / 9;
-      border-radius: 16px;
-      object-fit: contain;
-      background: black;
-    }
-
-    .final-text {
-      position: absolute;
-      top: 480px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 85%;
-      font-size: 22px;
-      color: #ff2f92;
-      font-weight: bold;
-      line-height: 1.45;
-      text-align: center;
-    }
+    .video-text{
+      position:absolute;
+      top:500px;
+      left:50%;
+      transform:translateX(-50%);
+      width:85%;
+      text-align:center;
+      font-size:22px;
+      font-weight:bold;
+      color:#ff2f92;
+      line-height:1.45;
+    }to{opacity:1}}
   </style>
 </head>
 <body>
 
-  <!-- PAGE 1 -->
-  <div id="page1">
-    <img src="./tkthao219-bubududu.gif" class="corner top-left" />
-    <img src="./twitter-cute.gif" class="corner top-right" />
-    <img src="./cute (1).gif" class="corner bottom-left" />
-    <img src="./munch-face.gif" class="corner bottom-right" />
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+  <img src="./tkthao219-bubududu.gif" class="corner top-left" />
+  <img src="./twitter-cute.gif" class="corner top-right" />
+  <img src="./cute (1).gif" class="corner bottom-left" />
+  <img src="./munch-face.gif" class="corner bottom-right" />
+  <div class="center-btn" onclick="go(2)">Click Here!!</div>
+</div>
 
-    <div class="center-text" onclick="goNext()">Click Here!!</div>
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+  <img src="./rosas.gif" class="bouquet" />
+  <div class="p2text">Flowers for my Pyara sa Flower 💖</div>
+  <img src="./meow-hs-meow-flowers.gif" class="cat" />
+  <div class="next-btn" onclick="go(3)">Next ➜</div>
+</div>
+
+<!-- PAGE 3 (VIDEO) -->
+<div id="page3" class="page">
+  <div class="video-wrap">
+    <video src="./Tinga ninga.mp4" controls autoplay></video>
   </div>
 
-  <!-- PAGE 2 -->
-  <div id="page2">
-    <img src="./rosas.gif" class="bouquet" />
-    <div class="text">Flowers for my Pyara sa Flower 💖</div>
-    <img src="./meow-hs-meow-flowers.gif" class="cat" />
-    <!-- cat only on page 2 -->
-    
-
-    <!-- next button -->
-    <div class="next-btn" onclick="goThird()">Next ➜</div>
-  </div>
-    
+  <div class="video-text">
+    This will be us together, dono tingu😭😂<br><br>
+    But dw as long as we are together with love and always at eachother's support, we will be happy in our peaceful world ❤️🫂
   </div>
 
-  <script>
-    function goNext() {
-      document.getElementById('page1').style.display = 'none';
-      document.getElementById('page2').style.display = 'block';
+  <div class="next-video" onclick="go(4)">Next ➜</div>
+</div>
+
+<!-- PAGE 4 (READY) -->
+<div id="page4" class="page">
+  <div class="title">Ready for the surprise ?</div>
+</div>
+
+<!-- PAGE 5 (VALENTINE) -->
+<div id="page5" class="page">
+  <div class="valentine">Vanshika Bareja,<br>Will you be my Valentine ? 💖</div>
+  <div class="choices">
+    <button class="yes">YESSSS!!!</button>
+    <button class="no">NO</button>
+  </div>
+</div>
+
+<script>
+  function go(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const page=document.getElementById('page'+n);
+    page.classList.add('active');
+
+    if(n===4){
+      setTimeout(()=>go(5),3500);
     }
-
-    document.addEventListener('mousemove', (e) => {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = e.clientX + 'px';
-      heart.style.top = e.clientY + 'px';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 1000);
-    });
-  </script>
-
-  <!-- PAGE 3 -->
-  <div id="page3">
-    <div class="video-wrap">
-      <video src="./Tinga ninga.mp4" controls autoplay></video>
-    </div>
-    <div class="final-text">
-      This will be us together, dono tingu😭😂<br><br>
-      But dw as long as we are together with love and always at eachother's support, we will be happy in our peaceful world ❤️🫂
-    </div>
-  </div>
-
-  <script>
-    function goNext() {
-      document.getElementById('page1').style.display = 'none';
-      document.getElementById('page2').style.display = 'block';
-    }
-
-    function goThird() {
-      document.getElementById('page2').style.display = 'none';
-      document.getElementById('page3').style.display = 'block';
-    }
-
-    document.addEventListener('mousemove', (e) => {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = e.clientX + 'px';
-      heart.style.top = e.clientY + 'px';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 1000);
-    });
-  </script>
+  }
+</script>
 
 </body>
 </html>
