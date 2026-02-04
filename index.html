@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For You</title>
+  <title>Flowers</title>
   <style>
     * {
       margin: 0;
@@ -14,13 +14,13 @@
     body {
       width: 100vw;
       height: 100vh;
+      background: url("./4871703.jpg") no-repeat center center / cover;
       font-family: Arial, sans-serif;
       overflow: hidden;
-      background: url("./4871703.jpg") no-repeat center center / cover;
     }
 
-    /* ---------- PAGE 1 ---------- */
-    .page1 {
+    /* PAGE 1 */
+    #page1 {
       width: 100%;
       height: 100%;
       position: relative;
@@ -41,45 +41,51 @@
       box-shadow: 0 10px 25px rgba(255, 95, 162, 0.4);
     }
 
-    .center-text:hover {
-      transform: translate(-50%, -50%) scale(1.08);
-    }
-
-    /* ---------- PAGE 2 ---------- */
-    .page2 {
+    /* PAGE 2 */
+    #page2 {
       display: none;
       width: 100%;
       height: 100%;
+      position: relative;
       text-align: center;
     }
 
     .bouquet {
-      width: 320px;
-      margin-top: 80px;
+      position: absolute;
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 360px;
     }
 
     .text {
-      margin-top: 20px;
-      font-size: 28px;
+      position: absolute;
+      top: 470px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 30px;
       font-weight: bold;
       color: #ff2f92;
     }
 
     .cat {
-      width: 150px;
-      margin-top: 40px;
+      position: absolute;
+      top: 560px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
     }
   </style>
 </head>
 <body>
 
   <!-- PAGE 1 -->
-  <div class="page1" id="page1">
+  <div id="page1">
     <div class="center-text" onclick="goNext()">Click Here!!</div>
   </div>
 
   <!-- PAGE 2 -->
-  <div class="page2" id="page2">
+  <div id="page2">
     <img src="./rosas.gif" class="bouquet" />
     <div class="text">Flowers for my Pyara sa Flower 💖</div>
     <img src="./meow-hs-meow-flowers.gif" class="cat" />
