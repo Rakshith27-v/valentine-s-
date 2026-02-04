@@ -291,26 +291,39 @@
 
 <script>
   function show(n){
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p=>{
+      p.classList.remove('active');
+    });
     document.getElementById('page'+n).classList.add('active');
   }
 
   function go(n){
     show(n);
-    if(n===4) setTimeout(()=>show(5),3500);
-    if(n===8) setTimeout(()=>show(9),3500);
+
+    // Ready for surprise → Valentine
+    if(n === 4){
+      setTimeout(() => show(5), 3500);
+    }
+
+    // Get ready for 7 days → Final paragraph
+    if(n === 8){
+      setTimeout(() => show(9), 3500);
+    }
   }
 
   function noClicked(){
-    show(6);
-    setTimeout(()=>show(5),3500);
+    show(6); // sad gif
+    setTimeout(() => show(5), 3500); // back to valentine
   }
 
   function yesClicked(){
-    show(7);
-    setTimeout(()=>go(8),3500);
+    show(7); // happy gif
+    setTimeout(() => {
+      go(8); // IMPORTANT: must use go(), not show()
+    }, 3500);
   }
 </script>
+
 
 </body>
 </html>
